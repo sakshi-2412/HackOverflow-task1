@@ -1,8 +1,7 @@
 var boxes = document.querySelectorAll(".box");
-var s = document.querySelector('.rgbspan');
+var rgbspan = document.querySelector('.rgbspan');
 var colors = generateRandomColor(6);
 var pickedColor = colors[Math.floor(Math.random() * 6)];
-s.textContent = pickedColor;
 var playbtn = document.querySelector("#playAgain");
 var easyBtn = document.querySelector("#easyBtn");
 var hardBtn = document.querySelector("#hardBtn");
@@ -11,27 +10,25 @@ var statusText = document.querySelector(".status");
 var startMenu = document.querySelector(".startMenu");
 var line = document.querySelector(".line");
 var mainBox = document.querySelector(".mainBox");
-statusText.textContent = "";
+var reload = document.querySelector("#reload");
 
+statusText.textContent = "";
+rgbspan.textContent = pickedColor;
 
 easyBtn.addEventListener("click", function() {
     
     startMenu.style.display = "none";
     line.style.display = "block";
     mainBox.style.display = "block";
-    document.querySelector("h1").style.background = "rgb(233, 119, 119)";
+    document.querySelector("h1").style.background = "#e0637e";
 
     statusText.textContent = "";
 
     boxCount = 3;
-    this.style.background = "rgb(233, 119, 119)"
-    this.style.color = "white"
-    hardBtn.style.background = "white";
-    hardBtn.style.color = "rgb(233, 119, 119)";
 
     colors = generateRandomColor(boxCount);
     pickedColor = colors[Math.floor(Math.random() * 3)];
-    s.textContent = pickedColor;
+    rgbspan.textContent = pickedColor;
 
     for (var i = 0; i < boxes.length; i++) {
         if (colors[i]) {
@@ -49,14 +46,9 @@ hardBtn.addEventListener("click", function() {
     line.style.display = "block";
     mainBox.style.display = "block";
 
-    document.querySelector("h1").style.background = "rgb(233, 119, 119)";
+    document.querySelector("h1").style.background = "#e0637e";
 
     statusText.textContent = "";
-
-    this.style.background = "rgb(233, 119, 119)"
-    this.style.color = "white"
-    easyBtn.style.background = "white";
-    easyBtn.style.color = "rgb(233, 119, 119)";
 
     boxCount = 6;
     colors = generateRandomColor(boxCount);
@@ -71,19 +63,22 @@ hardBtn.addEventListener("click", function() {
 
 
 playbtn.addEventListener("click", function() {
-    document.querySelector("h1").style.background = "rgb(233, 119, 119)";
+    document.querySelector("h1").style.background = "#e0637e";
 
     playbtn.textContent = "New Colors";
     statusText.textContent = "";
 
     colors = generateRandomColor(boxCount);
     pickedColor = colors[Math.floor(Math.random() * boxCount)];
-    s.textContent = pickedColor;
+    rgbspan.textContent = pickedColor;
     for (var i = 0; i < boxes.length; i++) {
         boxes[i].style.background = colors[i];
     }
 });
 
+reload.addEventListener("click", function(){
+    location.reload();
+});
 
 for (var i = 0; i < colors.length; i++) {
     boxes[i].style.background = colors[i];
@@ -109,9 +104,6 @@ function win() {
     playbtn.textContent = "Play Again!!";
     statusText.textContent = "Correct!!";
 
-    startMenu.style.display = "block";
-    line.style.display = "none";
-    mainBox.style.display = "none";
 }
 
 
